@@ -39,6 +39,43 @@ function makeFirstNumberNegative(arr) {
 	return arr // Return unmodified array if no number found
 }
 
+function subtract(a, b) {
+	// Compare a and b to determine which is larger
+	const isNegative = compare(a, b) < 0 // Result is negative if a < b
+
+	// Ensure we always subtract the smaller number from the larger number
+	const larger = isNegative ? b : a
+	const smaller = isNegative ? a : b
+
+	let result = []
+	let borrow = 0
+	let i = larger.length - 1
+	let j = smaller.length - 1
+
+	// Subtraction loop
+	while (i >= 0 || j >= 0) {
+		let diff = (i >= 0 ? larger[i--] : 0) - borrow
+		if (j >= 0) diff -= smaller[j--]
+
+		if (diff < 0) {
+			diff += 10
+			borrow = 1
+		} else {
+			borrow = 0
+		}
+		result.push(diff)
+	}
+
+	// Remove leading zeros
+	while (result.length > 1 && result[result.length - 1] === 0) {
+		result.pop()
+	}
+
+	// Reverse the result array and return with the appropriate sign
+	result.reverse()
+	return isNegative ? makeFirstNumberNegative(result) : result
+}
+
 // take an expression as input
 const input = prompt("Enter two numbers seperated by a space (or 'exit'):")
 // place the two inputs into seperate variables
