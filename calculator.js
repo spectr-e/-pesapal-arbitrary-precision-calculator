@@ -30,3 +30,4 @@ const sum = add(digitA, digitB)
 // convert the result back into a string and remove any leading zeros
 const answer = parseInt(sum.join(""), 10)
 console.log({answer})
+console.log({result: add([1, 2, 3], [4, 5, 6])})
