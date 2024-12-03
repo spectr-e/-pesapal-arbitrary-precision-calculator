@@ -29,6 +29,16 @@ function compare(a, b) {
 	return 0
 }
 
+function makeFirstNumberNegative(arr) {
+	for (let i = 0; i < arr.length; i++) {
+		if (typeof arr[i] === "number") {
+			arr[i] = arr[i] > 0 ? -arr[i] : arr[i] // Make negative if positive
+			return arr // Return the modified array
+		}
+	}
+	return arr // Return unmodified array if no number found
+}
+
 // take an expression as input
 const input = prompt("Enter two numbers seperated by a space (or 'exit'):")
 // place the two inputs into seperate variables
