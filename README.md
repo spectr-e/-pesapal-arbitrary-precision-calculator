@@ -4,6 +4,13 @@ This program allows you to perform arithmetic operations (addition, subtraction,
 
 This solution has been implemented by [Josiah Nganga](https://linkedin.com/in/kamaujosia). Feel free to reach out to me if you have any questions via [my portfolio](https://josiah.vercel.app)
 
+# Table of Contents
+
+-  [Getting Started](#getting-started)
+   -  [Prerequisites](#prerequisites)
+   -  [Instructions](#instructions)
+   -  [Demo](#demo)
+
 # Getting Started
 
 ### Prerequisites:
@@ -70,3 +77,5 @@ Output: 5040
 Enter an expression (or 'exit'): exit
 Program ends.
 ```
+
+[Back to Table of Contents](#table-of-contents)
