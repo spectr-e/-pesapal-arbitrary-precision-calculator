@@ -1,0 +1,14 @@
+{
+  "name": "pesapal-arbitrary-precision-calculator",
+  "version": "1.0.0",
+  "description": "An arbitrary-precision-integer calculator in a language that doesn't have native support and without relying on any libraries for the core functionality.",
+  "main": "calculator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pesapal-code-challenge-24"
+  ],
+  "author": "Josiah Nganga",
+  "license": "ISC"
+}
