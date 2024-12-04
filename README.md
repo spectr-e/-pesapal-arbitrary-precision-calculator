@@ -17,13 +17,16 @@ This solution has been implemented by [Josiah Nganga](https://linkedin.com/in/ka
    -  [2. `subtract` function](#2-subtract-function)
       -  [How It works](#how-it-works-1)
       -  [Example Walkthrough](#example-walkthrough-1)
--  [Helper Functions](#helper-functions)
-   -  [1. `compare` function](#1-compare-function)
+   -  [3. `multiply` function](#3-multiply-function)
       -  [How It works](#how-it-works-2)
       -  [Example Walkthrough](#example-walkthrough-2)
-   -  [2. `makeFirstNumberNegative` function](#2-makefirstnumbernegative-function)
+-  [Helper Functions](#helper-functions)
+   -  [1. `compare` function](#1-compare-function)
       -  [How It works](#how-it-works-3)
       -  [Example Walkthrough](#example-walkthrough-3)
+   -  [2. `makeFirstNumberNegative` function](#2-makefirstnumbernegative-function)
+      -  [How It works](#how-it-works-4)
+      -  [Example Walkthrough](#example-walkthrough-4)
 
 # Getting Started
 
@@ -250,6 +253,84 @@ This function performs subtraction between two arrays of digits, `a` and `b`, an
 
 ```javascript
 subtract([1, 2, 3], [4, 5]) // Returns [8, 8]
+```
+
+[Back to Table of Contents](#table-of-contents)
+
+## 3. `multiply` Function
+
+The `multiply` function performs multiplication of two arrays of digits, `a` and `b`. Each array represents a large number, where each element is a single digit. The function uses a digit-by-digit approach and manages carries across multiple positions.
+
+---
+
+### How It Works:
+
+1. **Initialization**:
+
+   -  `result`: An array initialized with zeros, with a length of `a.length + b.length`. This ensures enough space to hold the product.
+   -  Nested loops: Two loops iterate through every combination of digits in `a` and `b`, starting from the least significant digits.
+
+2. **Multiplication and Carry Management**:
+
+   -  For each pair of digits `a[i]` and `b[j]`:
+      -  Multiply `a[i]` and `b[j]` to get `product`.
+      -  Determine positions in `result`:
+         -  `p1 = i + j` (carry position).
+         -  `p2 = i + j + 1` (current digit position).
+      -  Add `product` to the value at `p2` (including any carry from previous calculations).
+      -  Update `result[p1]` with the carry (`Math.floor(sum / 10)`).
+      -  Update `result[p2]` with the remainder (`sum % 10`).
+
+3. **Remove Leading Zeros**:
+
+   -  After processing all digits, leading zeros in the `result` are removed by popping elements until only one digit remains or the first non-zero digit is found.
+
+4. **Return**:
+   -  The `result` array is returned as the final product.
+
+### Example Walkthrough:
+
+**Input**: `[1, 2]` and `[3, 4]`
+
+1. **Initialization**:
+
+   -  `a = [1, 2]`, `b = [3, 4]`
+   -  `result = [0, 0, 0, 0]` (length = `a.length + b.length = 4`)
+
+2. **Step-by-Step Multiplication**:
+
+   -  **Outer Loop (i = 1)**:
+
+      -  **Inner Loop (j = 1)**:
+         -  `product = a[1] (2) * b[1] (4) = 8`
+         -  `p1 = 2`, `p2 = 3`
+         -  Add `8` to `result[3]`: `result = [0, 0, 0, 8]`
+      -  **Inner Loop (j = 0)**:
+         -  `product = a[1] (2) * b[0] (3) = 6`
+         -  `p1 = 1`, `p2 = 2`
+         -  Add `6` to `result[2]`: `result = [0, 0, 6, 8]`
+
+   -  **Outer Loop (i = 0)**:
+      -  **Inner Loop (j = 1)**:
+         -  `product = a[0] (1) * b[1] (4) = 4`
+         -  `p1 = 1`, `p2 = 2`
+         -  Add `4` to `result[2]` (carry managed): `result = [0, 1, 0, 8]`
+      -  **Inner Loop (j = 0)**:
+         -  `product = a[0] (1) * b[0] (3) = 3`
+         -  `p1 = 0`, `p2 = 1`
+         -  Add `3` to `result[1]`: `result = [0, 4, 0, 8]`
+
+3. **Remove Leading Zeros**:
+
+   -  Final `result = [0, 4, 0, 8]`. Remove the leading zero: `result = [4, 0, 8]`.
+
+4. **Return**:
+   -  The final result is `[4, 0, 8]`.
+
+**Output**:
+
+```javascript
+multiply([1, 2], [3, 4]) // Returns [4, 0, 8]
 ```
 
 [Back to Table of Contents](#table-of-contents)
