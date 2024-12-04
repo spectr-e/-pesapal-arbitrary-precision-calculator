@@ -98,6 +98,36 @@ function multiply(a, b) {
 
 	return result
 }
+
+function divide(a, b) {
+	if (b.every((digit) => digit === 0)) {
+		throw new Error("Division by zero")
+	}
+
+	let result = []
+	let current = []
+
+	for (let i = 0; i < a.length; i++) {
+		current.push(a[i])
+		console.log({current})
+		let count = 0
+		console.log({comparison: compare(current, b)})
+		while (compare(current, b) >= 0) {
+			current = subtract(current, b)
+			console.log({current})
+			count++
+		}
+		result.push(count)
+		console.log({result})
+	}
+
+	while (result.length > 1 && result[0] === 0) {
+		result.shift()
+	}
+
+	return result
+}
+
 // take an expression as input
 const input = prompt("Enter two numbers seperated by a space (or 'exit'):")
 // place the two inputs into seperate variables
@@ -108,7 +138,7 @@ const digitA = parseInt(a).toString().split("").map(Number)
 const digitB = parseInt(b).toString().split("").map(Number)
 // solve the expression
 console.log({digitA, digitB})
-const product = multiply(digitA, digitB)
+const result = divide(digitA, digitB)
 // convert the result back into a string and remove any leading zeros
-const answer = parseInt(product.join(""), 10)
+const answer = parseInt(result.join(""), 10)
 console.log({answer})
