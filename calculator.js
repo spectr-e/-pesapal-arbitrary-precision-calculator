@@ -76,6 +76,28 @@ function subtract(a, b) {
 	return isNegative ? makeFirstNumberNegative(result) : result
 }
 
+function multiply(a, b) {
+	const indexA = a.length - 1
+	const indexB = b.length - 1
+	let result = Array(a.length + b.length).fill(0)
+
+	for (let i = indexA; i >= 0; i--) {
+		for (let j = indexB; j >= 0; j--) {
+			let product = a[i] * b[j]
+			let p1 = i + j // carry position
+			let p2 = p1 + 1 // current digit position
+			let sum = product + result[p2]
+
+			result[p1] += Math.floor(sum / 10)
+			result[p2] = sum % 10
+		}
+	}
+	while (result.length > 1 && result[0] === 0) {
+		result.shift()
+	}
+
+	return result
+}
 // take an expression as input
 const input = prompt("Enter two numbers seperated by a space (or 'exit'):")
 // place the two inputs into seperate variables
@@ -85,7 +107,8 @@ const [a, b] = input.split(" ")
 const digitA = parseInt(a).toString().split("").map(Number)
 const digitB = parseInt(b).toString().split("").map(Number)
 // solve the expression
-const diff = subtract(digitA, digitB)
+console.log({digitA, digitB})
+const product = multiply(digitA, digitB)
 // convert the result back into a string and remove any leading zeros
-const answer = parseInt(diff.join(""), 10)
+const answer = parseInt(product.join(""), 10)
 console.log({answer})
