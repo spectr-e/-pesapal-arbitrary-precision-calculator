@@ -18,9 +18,14 @@ function add(a, b) {
 }
 
 function compare(a, b) {
+	if (a.every((digit) => digit === 0)) {
+		return -1
+	}
+
 	if (a.length !== b.length) {
 		return a.length > b.length ? 1 : -1
 	}
+
 	for (let i = 0; i < a.length; i++) {
 		if (a[i] !== b[i]) {
 			return a[i] > b[i] ? 1 : -1
@@ -99,30 +104,59 @@ function multiply(a, b) {
 	return result
 }
 
-function divide(a, b) {
+function divide(a, b, precision = 2) {
+	// Changed default precision to 2
 	if (b.every((digit) => digit === 0)) {
 		throw new Error("Division by zero")
 	}
 
 	let result = []
 	let current = []
+	let decimalPoint = 0
 
+	// Integer part
 	for (let i = 0; i < a.length; i++) {
 		current.push(a[i])
-		console.log({current})
+
 		let count = 0
-		console.log({comparison: compare(current, b)})
 		while (compare(current, b) >= 0) {
 			current = subtract(current, b)
-			console.log({current})
 			count++
 		}
 		result.push(count)
-		console.log({result})
 	}
 
-	while (result.length > 1 && result[0] === 0) {
+	// Decimal part
+	if (!current.every((digit) => digit === 0)) {
+		result.push(".") // Add decimal point
+		decimalPoint = result.length
+
+		for (let i = 0; i < precision; i++) {
+			current.push(0)
+			let count = 0
+			while (compare(current, b) >= 0) {
+				current = subtract(current, b)
+				count++
+			}
+			result.push(count)
+		}
+	}
+
+	// Remove leading zeros in integer part
+	while (result.length > decimalPoint && result[0] === 0) {
 		result.shift()
+	}
+
+	// Remove trailing zeros in decimal part (if no integer part)
+	if (decimalPoint === 1) {
+		while (result[result.length - 1] === 0) {
+			result.pop()
+		}
+	}
+
+	// If the result is only a decimal point, add a leading zero
+	if (result.length === 1 && result[0] === ".") {
+		result.unshift(0)
 	}
 
 	return result
@@ -140,5 +174,6 @@ const digitB = parseInt(b).toString().split("").map(Number)
 console.log({digitA, digitB})
 const result = divide(digitA, digitB)
 // convert the result back into a string and remove any leading zeros
-const answer = parseInt(result.join(""), 10)
+console.log({result})
+const answer = parseFloat(result.join(""), 10)
 console.log({answer})
