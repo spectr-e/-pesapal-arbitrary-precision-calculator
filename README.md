@@ -20,13 +20,16 @@ This solution has been implemented by [Josiah Nganga](https://linkedin.com/in/ka
    -  [3. `multiply` function](#3-multiply-function)
       -  [How It works](#how-it-works-2)
       -  [Example Walkthrough](#example-walkthrough-2)
--  [Helper Functions](#helper-functions)
-   -  [1. `compare` function](#1-compare-function)
+   -  [4. `divide` function](#4-divide-function)
       -  [How It works](#how-it-works-3)
       -  [Example Walkthrough](#example-walkthrough-3)
-   -  [2. `makeFirstNumberNegative` function](#2-makefirstnumbernegative-function)
+-  [Helper Functions](#helper-functions)
+   -  [1. `compare` function](#1-compare-function)
       -  [How It works](#how-it-works-4)
       -  [Example Walkthrough](#example-walkthrough-4)
+   -  [2. `makeFirstNumberNegative` function](#2-makefirstnumbernegative-function)
+      -  [How It works](#how-it-works-5)
+      -  [Example Walkthrough](#example-walkthrough-5)
 
 # Getting Started
 
@@ -334,6 +337,104 @@ multiply([1, 2], [3, 4]) // Returns [4, 0, 8]
 ```
 
 [Back to Table of Contents](#table-of-contents)
+
+## 4. `divide` Function
+
+The `divide` function performs division of two arrays of digits, `a` (dividend) and `b` (divisor), with a specified precision for decimal places. Each array represents a large number, where each element is a single digit. The function uses a long division approach to calculate the quotient, including both the integer and decimal parts. Division by zero is explicitly handled by throwing an error.
+
+### How It Works:
+
+1. **Handle Division by Zero**:
+
+   -  If all digits in `b` are zero, throw an error: `"Division by zero"`.
+
+2. **Initialization**:
+
+   -  `result`: An empty array to store the quotient digits.
+   -  `current`: An empty array used to build the portion of the dividend currently being divided.
+   -  `decimalPoint`: A variable to store the index of the decimal point in the `result` array.
+
+3. **Integer Part Calculation**:
+
+   -  Iterate through each digit of `a` from left to right.
+   -  Add the current digit of `a` to `current`.
+   -  Determine how many times `b` fits into `current`:
+      -  Use a loop to subtract `b` from `current` while `current >= b`, counting how many subtractions occur.
+      -  Append this count to `result`.
+   -  After processing all digits, `current` contains the remainder.
+
+4. **Decimal Part Calculation**:
+
+   -  If `current` is not zero (i.e., there's a remainder), proceed to calculate the decimal part:
+      -  Append a decimal point (`.`) to `result`.
+      -  Set `decimalPoint` to the current length of `result`.
+      -  Iterate `precision` times (default is 2):
+         -  Append a `0` to `current`.
+         -  Determine how many times `b` fits into `current` (similar to the integer part calculation).
+         -  Append this count to `result`.
+
+5. **Remove Leading and Trailing Zeros**:
+
+   -  Remove leading zeros from the integer part of `result`.
+   -  If there's no integer part, remove trailing zeros from the decimal part.
+
+6. **Handle Special Case**:
+
+   -  If `result` only contains a decimal point after removing trailing zeros, add a leading zero (`0`).
+
+7. **Return**:
+   -  The `result` array is returned as the quotient, including the decimal part.
+
+### Example Walkthrough (with decimals)
+
+**Input**: `[1]` divided by `[3]` with `precision = 4`
+
+1. **Initialization**:
+
+   -  `a = [1]`, `b = [3]`
+   -  `result = []`, `current = []`, `precision = 4`
+
+2. **Integer Part Calculation**:
+
+   -  **Iteration 1 (Process digit 1)**:
+      -  Add `1` to `current`: `current = [1]`.
+      -  `1 < 3`, so append `0` to `result`: `result = [0]`.
+      -  Remainder: `current = [1]`
+
+3. **Decimal Part Calculation**:
+
+   -  `current` is not zero, so proceed with decimal calculation.
+   -  Append `.` to `result`: `result = [0, '.']`
+   -  `decimalPoint = 2`
+   -  **Iteration 1**:
+      -  Append `0` to `current`: `current = [1, 0]`
+      -  `10 / 3 = 3` (fits 3 times) -> `current = [1]` -> Append `3` to `result`: `result = [0, '.', 3]`
+   -  **Iteration 2**:
+      -  Append `0` to `current`: `current = [1, 0]`
+      -  `10 / 3 = 3` (fits 3 times) -> `current = [1]` -> Append `3` to `result`: `result = [0, '.', 3, 3]`
+   -  **Iteration 3**:
+      -  Append `0` to `current`: `current = [1, 0]`
+      -  `10 / 3 = 3` (fits 3 times) -> `current = [1]` -> Append `3` to `result`: `result = [0, '.', 3, 3, 3]`
+   -  **Iteration 4**:
+      -  Append `0` to `current`: `current = [1, 0]`
+      -  `10 / 3 = 3` (fits 3 times) -> `current = [1]` -> Append `3` to `result`: `result = [0, '.', 3, 3, 3, 3]`
+
+4. **Remove Leading and Trailing Zeros**:
+
+   -  No trailing zeros to remove.
+
+5. **Handle Special Case**:
+
+   -  Not applicable.
+
+6. **Return**:
+   -  The final result is `[0, '.', 3, 3, 3, 3]`.
+
+**Output**:
+
+```javascript
+divide([1], [3], 4) // Returns [0, '.', 3, 3, 3, 3] which represents 0.3333
+```
 
 # Helper Functions
 
