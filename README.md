@@ -36,6 +36,12 @@ This solution has been implemented by [Josiah Nganga](https://linkedin.com/in/ka
    -  [2. `makeFirstNumberNegative` function](#2-makefirstnumbernegative-function)
       -  [How It works](#how-it-works-7)
       -  [Example Walkthrough](#example-walkthrough-7)
+   -  [3. `fromDigits` function](#3-fromdigits-function)
+      -  [How It works](#how-it-works-8)
+      -  [Example Walkthrough](#example-walkthrough-8)
+   -  [4. `toDigits` function](#4-todigits-function)
+      -  [How It works](#how-it-works-9)
+      -  [Example Walkthrough](#example-walkthrough-9)
 
 # Getting Started
 
@@ -659,6 +665,113 @@ The `makeFirstNumberNegative` iterates through an array of digits and changes th
 
 ```javascript
 makeFirstNumberNegative([2, 3, 4]) // Returns [-2, 3, 4]
+```
+
+[Back to Table of Contents](#table-of-contents)
+
+## 3. `toDigits` Function
+
+The `toDigits` function converts a regular JavaScript number (`num`) into an array of digits. This is a helper function used to convert input numbers into the format used by the arbitrary-precision calculator (where numbers are represented as arrays of digits).
+
+### How It Works:
+
+1. **Convert to String:**
+
+   -  The input number `num` is converted into a string using the `toString()` method.
+
+2. **Split into Digits:**
+
+   -  The string representation of the number is split into an array of individual characters using the `split('')` method.
+
+3. **Map to Numbers:**
+
+   -  The array of characters is mapped to an array of numbers using the `map(Number)` method. This converts each character ('0', '1', '2', etc.) back into its corresponding numerical value (0, 1, 2, etc.).
+
+4. **Return**:
+   -  The resulting array of digits is returned.
+
+### Example Walkthrough
+
+**Input**: `12345`
+
+1. **Convert to String**:
+
+   -  `num = 12345` is converted to the string `"12345"`.
+
+2. **Split into Digits**:
+
+   -  `"12345"` is split into the array `['1', '2', '3', '4', '5']`.
+
+3. **Map to Numbers**:
+
+   -  Each character in the array is converted to a number: `[1, 2, 3, 4, 5]`.
+
+4. **Return**:
+   -  The function returns the array `[1, 2, 3, 4, 5]`.
+
+**Output**:
+
+```javascript
+toDigits(12345) // Returns [1, 2, 3, 4, 5]
+```
+
+[Back to Table of Contents](#table-of-contents)
+
+## 4. `fromDigits` Function
+
+The `fromDigits` function converts an array of digits (`digits`) back into a regular JavaScript number. This is a helper function used to convert the output of the arbitrary-precision calculator (which is in the form of an array of digits) back into a standard number format.
+
+### How It Works:
+
+1. **Join Digits:**
+
+   -  The input array of digits (`digits`) is joined together into a single string using the `join('')` method. This effectively concatenates all the digits in the array.
+
+2. **Parse to Number:**
+
+   -  The resulting string is parsed into a JavaScript number using the `parseFloat()` method to account for decimal numbers as well. The second argument (`10`) to `parseFloat()` specifies that the number should be parsed as a base-10 number.
+
+3. **Return**:
+   -  The parsed number is returned.
+
+### Example Walkthrough
+
+**Input**: `[1, 2, 3, 4, 5]`
+
+1. **Join Digits**:
+
+   -  The array `[1, 2, 3, 4, 5]` is joined into the string `"12345"`.
+
+2. **Parse to Number**:
+
+   -  The string `"12345"` is parsed as a base-10 number, resulting in the number `12345`.
+
+3. **Return**:
+   -  The function returns the number `12345`.
+
+**Output**:
+
+```javascript
+fromDigits([1, 2, 3, 4, 5]) // Returns 12345
+```
+
+**Input**: `[1, 2, 3, '.', 4, 5]`
+
+1. **Join Digits**:
+
+   -  The array `[1, 2, 3, '.', 4, 5]` is joined into the string `"123.45"`.
+
+2. **Parse to Number:**
+
+   -  The string `"123.45"` is parsed into the floating-point number `123.45`.
+
+3. **Return**:
+   -  The function returns the number `123.45`.
+
+**Output**:
+
+```javascript
+fromDigits([1, 2, 3, ".", 4, 5]) // Returns 123.45
 ```
 
 [Back to Table of Contents](#table-of-contents)
