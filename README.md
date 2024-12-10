@@ -23,13 +23,16 @@ This solution has been implemented by [Josiah Nganga](https://linkedin.com/in/ka
    -  [4. `divide` function](#4-divide-function)
       -  [How It works](#how-it-works-3)
       -  [Example Walkthrough](#example-walkthrough-3)
--  [Helper Functions](#helper-functions)
-   -  [1. `compare` function](#1-compare-function)
+   -  [5. `modulo` function](#5-modulo-function)
       -  [How It works](#how-it-works-4)
       -  [Example Walkthrough](#example-walkthrough-4)
-   -  [2. `makeFirstNumberNegative` function](#2-makefirstnumbernegative-function)
+-  [Helper Functions](#helper-functions)
+   -  [1. `compare` function](#1-compare-function)
       -  [How It works](#how-it-works-5)
       -  [Example Walkthrough](#example-walkthrough-5)
+   -  [2. `makeFirstNumberNegative` function](#2-makefirstnumbernegative-function)
+      -  [How It works](#how-it-works-6)
+      -  [Example Walkthrough](#example-walkthrough-6)
 
 # Getting Started
 
