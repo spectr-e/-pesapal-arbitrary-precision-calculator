@@ -573,6 +573,80 @@ exponentiation([2, 3], 4) // Returns [2, 7, 8, 8, 8, 1] which represents 23^4 = 
 
 [Back to Table of Contents](#table-of-contents)
 
+## 9. REPL (Read-Eval-Print Loop)
+
+The REPL (Read-Eval-Print Loop) is the interactive interface that allows users to interact with the arbitrary-precision calculator. It continuously prompts the user for input, evaluates the input expression, and prints the result.
+
+### How It Works:
+
+1. **Input Loop:**
+
+   -  A `while (true)` loop runs indefinitely to keep the REPL active.
+   -  Inside the loop, the `prompt()` function is used to display a message asking the user to "Enter an expression (or 'exit'):" and waits for user input.
+
+2. **Exit Condition:**
+
+   -  If the user enters "exit", the `break` statement terminates the loop, ending the REPL session.
+
+3. **Input Parsing:**
+
+   -  The user's input is split into three parts using the `split(' ')` method:
+      -  `a`: The first operand (as a string).
+      -  `op`: The operator (+, -, \*, /, %, ^, !).
+      -  `b`: The second operand (as a string), if applicable.
+
+4. **Operand Conversion:**
+
+   -  The operands `a` and `b` are converted to arrays of digits using the `toDigits()` function after parsing them as integers using `parseInt()`.
+
+5. **Operation Execution:**
+
+   -  A `switch` statement is used to determine the appropriate operation to perform based on the `op` value.
+   -  The corresponding function (`add`, `subtract`, `multiply`, `divide`, `modulo`, `exponentiation`, or `factorial`) is called with the converted operands.
+
+6. **Result Display:**
+
+   -  The result from the operation (an array of digits) is converted back to a regular number using the `fromDigits()` function.
+   -  The final result is displayed to the user using `console.log()`.
+
+7. **Error Handling:**
+
+   -  A `try...catch` block is used to handle potential errors (e.g., invalid input, division by zero).
+   -  If an error occurs, the error message is displayed to the user using `console.error()`.
+
+### Example Walkthrough
+
+**Input**: `12345 + 54321`
+
+1. **Input Loop:**
+
+   -  The REPL prompts the user for input. The user enters `12345 + 54321`.
+
+2. **Input Parsing:**
+
+   -  The input is split into `a = "12345"`, `op = "+"`, and `b = "54321"`.
+
+3. **Operand Conversion:**
+
+   -  `a` is converted to `[5, 4, 3, 2, 1]`.
+   -  `b` is converted to `[1, 2, 3, 4, 5]`.
+
+4. **Operation Execution:**
+
+   -  The `switch` statement matches `op` with `+` and calls the `add()` function: `add([5, 4, 3, 2, 1], [1, 2, 3, 4, 5])`.
+
+5. **Result Display:**
+
+   -  The `add()` function returns `[6, 6, 6, 6, 6]`.
+   -  This result is converted to the number `66666` using `fromDigits()`.
+   -  The REPL prints `66666` to the console.
+
+6. **Input Loop Continues:**
+
+   -  The REPL prompts for the next input.
+
+[Back to Table of Contents](#table-of-contents)
+
 # Helper Functions
 
 ## 1. `compare` Function
