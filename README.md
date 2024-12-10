@@ -93,7 +93,6 @@ This solution has been implemented by [Josiah Nganga](https://josiah.vercel.app)
       -  **Addition**: `3 + 4` will output `7`.
       -  **Multiplication**: `2 * 5` will output `10`.
       -  **Exponentiation**: `2 ^ 3` will output `8`.
-      -  **Factorial**: `5!` will output `120`.
    -  Type `exit` to terminate the program.
 
 ### Demo:
@@ -110,10 +109,6 @@ Output: 30
 // Input:
 Enter an expression (or 'exit'): 10 ^ 2
 Output: 100
-
-// Input:
-Enter an expression (or 'exit'): 7!
-Output: 5040
 
 // Input:
 Enter an expression (or 'exit'): exit
