@@ -162,6 +162,23 @@ function divide(a, b, precision = 2) {
 	return result
 }
 
+function modulo(a, b) {
+	if (b.every((digit) => digit === 0)) {
+		throw new Error("Modulo by zero")
+	}
+
+	let current = []
+
+	for (let i = 0; i < a.length; i++) {
+		current.push(a[i])
+		while (compare(current, b) >= 0) {
+			current = subtract(current, b)
+		}
+	}
+
+	return current
+}
+
 // take an expression as input
 const input = prompt("Enter two numbers seperated by a space (or 'exit'):")
 // place the two inputs into seperate variables
@@ -172,7 +189,7 @@ const digitA = parseInt(a).toString().split("").map(Number)
 const digitB = parseInt(b).toString().split("").map(Number)
 // solve the expression
 console.log({digitA, digitB})
-const result = divide(digitA, digitB)
+const result = modulo(digitA, digitB)
 // convert the result back into a string and remove any leading zeros
 console.log({result})
 const answer = parseFloat(result.join(""), 10)
