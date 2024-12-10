@@ -4,6 +4,10 @@ This program allows you to perform arithmetic operations (addition, subtraction,
 
 This solution has been implemented by [Josiah Nganga](https://linkedin.com/in/kamaujosia). Feel free to reach out to me if you have any questions via [my portfolio](https://josiah.vercel.app)
 
+This program allows you to perform arithmetic operations (addition, subtraction, multiplication, division, modulo, exponentiation, and factorial) on arbitrarily large numbers using arrays of digits. It features a REPL (Read-Eval-Print Loop) interface where you can interactively enter expressions and see results.
+
+This solution has been implemented by [Josiah Nganga](https://linkedin.com/in/kamaujosia). Feel free to reach out to me if you have any questions via [my portfolio](https://josiah.vercel.app)
+
 # Table of Contents
 
 -  [Getting Started](#getting-started)
@@ -11,36 +15,39 @@ This solution has been implemented by [Josiah Nganga](https://linkedin.com/in/ka
    -  [Instructions](#instructions)
    -  [Demo](#demo)
 -  [Core Functions](#core-functions)
-   -  [1. `add` function](#1-add-function)
-      -  [How It works](#how-it-works)
+   -  [`add`](#1-add)
+      -  [How It Works](#how-it-works)
       -  [Example Walkthrough](#example-walkthrough)
-   -  [2. `subtract` function](#2-subtract-function)
-      -  [How It works](#how-it-works-1)
+   -  [`subtract`](#2-subtract)
+      -  [How It Works](#how-it-works-1)
       -  [Example Walkthrough](#example-walkthrough-1)
-   -  [3. `multiply` function](#3-multiply-function)
-      -  [How It works](#how-it-works-2)
+   -  [`multiply`](#3-multiply)
+      -  [How It Works](#how-it-works-2)
       -  [Example Walkthrough](#example-walkthrough-2)
-   -  [4. `divide` function](#4-divide-function)
-      -  [How It works](#how-it-works-3)
+   -  [`divide`](#4-divide)
+      -  [How It Works](#how-it-works-3)
+      -  [Example Walkthrough (with decimals)](#example-walkthrough-with-decimals)
+   -  [`modulo`](#5-modulo)
+      -  [How It Works](#how-it-works-4)
       -  [Example Walkthrough](#example-walkthrough-3)
-   -  [5. `modulo` function](#5-modulo-function)
-      -  [How It works](#how-it-works-4)
+   -  [`exponentiation`](#6-exponentiation)
+      -  [How It Works](#how-it-works-5)
       -  [Example Walkthrough](#example-walkthrough-4)
-   -  [6. `exponentiation` function](#6-exponentiation-function)
-      -  [How It works](#how-it-works-5)
+   -  [`REPL`](#7-repl)
+      -  [How It Works](#how-it-works-6)
       -  [Example Walkthrough](#example-walkthrough-5)
 -  [Helper Functions](#helper-functions)
-   -  [1. `compare` function](#1-compare-function)
-      -  [How It works](#how-it-works-6)
+   -  [`toDigits`](#1-todigits)
+      -  [How It Works](#how-it-works-7)
       -  [Example Walkthrough](#example-walkthrough-6)
-   -  [2. `makeFirstNumberNegative` function](#2-makefirstnumbernegative-function)
-      -  [How It works](#how-it-works-7)
+   -  [`fromDigits`](#2-fromdigits)
+      -  [How It Works](#how-it-works-8)
       -  [Example Walkthrough](#example-walkthrough-7)
-   -  [3. `fromDigits` function](#3-fromdigits-function)
-      -  [How It works](#how-it-works-8)
+   -  [`compare`](#3-compare)
+      -  [How It Works](#how-it-works-9)
       -  [Example Walkthrough](#example-walkthrough-8)
-   -  [4. `toDigits` function](#4-todigits-function)
-      -  [How It works](#how-it-works-9)
+   -  [`makeFirstNumberNegative`](#4-makefirstnumbernegative)
+      -  [How It Works](#how-it-works-10)
       -  [Example Walkthrough](#example-walkthrough-9)
 
 # Getting Started
@@ -114,7 +121,7 @@ Program ends.
 
 # Core Functions
 
-## 1. `add` Function
+## 1. `add`
 
 The `add` function performs addition of two arrays of digits, `a` and `b`. Each array represents a large number, where each element is a single digit. The function ensures proper handling of carries and returns the sum as an array of digits.
 
@@ -189,7 +196,7 @@ add([1, 2, 3], [4, 5, 6]) // Returns [5, 7, 9]
 
 [Back to Table of Contents](#table-of-contents)
 
-## 2. `subtract` Function
+## 2. `subtract`
 
 This function performs subtraction between two arrays of digits, `a` and `b`, and manages cases where the result is negative. It ensures proper borrowing when needed and adjusts the sign of the result if the smaller number is subtracted from the larger.
 
@@ -272,7 +279,7 @@ subtract([1, 2, 3], [4, 5]) // Returns [8, 8]
 
 [Back to Table of Contents](#table-of-contents)
 
-## 3. `multiply` Function
+## 3. `multiply`
 
 The `multiply` function performs multiplication of two arrays of digits, `a` and `b`. Each array represents a large number, where each element is a single digit. The function uses a digit-by-digit approach and manages carries across multiple positions.
 
@@ -350,7 +357,7 @@ multiply([1, 2], [3, 4]) // Returns [4, 0, 8]
 
 [Back to Table of Contents](#table-of-contents)
 
-## 4. `divide` Function
+## 4. `divide`
 
 The `divide` function performs division of two arrays of digits, `a` (dividend) and `b` (divisor), with a specified precision for decimal places. Each array represents a large number, where each element is a single digit. The function uses a long division approach to calculate the quotient, including both the integer and decimal parts. Division by zero is explicitly handled by throwing an error.
 
@@ -448,7 +455,9 @@ The `divide` function performs division of two arrays of digits, `a` (dividend) 
 divide([1], [3], 4) // Returns [0, '.', 3, 3, 3, 3] which represents 0.3333
 ```
 
-## 5. `modulo` Function
+[Back to Table of Contents](#table-of-contents)
+
+## 5. `modulo`
 
 The `modulo` function calculates the remainder when one array of digits, `a` (dividend), is divided by another array of digits, `b` (divisor). Each array represents a large number, where each element is a single digit. The function uses a repeated subtraction approach to find the modulo. Modulo by zero is explicitly handled by throwing an error.
 
@@ -512,7 +521,7 @@ modulo([1, 0, 2, 4], [4]) // Returns [0]
 
 [Back to Table of Contents](#table-of-contents)
 
-## 6. `exponentiation` Function
+## 6. `exponentiation`
 
 The `exponentiation` function calculates the result of raising one array of digits, `a` (base), to the power of a non-negative integer `b` (exponent). Each digit in the array `a` represents a single digit of the base number. The function uses the "exponentiation by squaring" algorithm for efficient calculation.
 
@@ -573,7 +582,7 @@ exponentiation([2, 3], 4) // Returns [2, 7, 8, 8, 8, 1] which represents 23^4 = 
 
 [Back to Table of Contents](#table-of-contents)
 
-## 9. REPL (Read-Eval-Print Loop)
+## 7. `REPL`
 
 The REPL (Read-Eval-Print Loop) is the interactive interface that allows users to interact with the arbitrary-precision calculator. It continuously prompts the user for input, evaluates the input expression, and prints the result.
 
@@ -649,101 +658,7 @@ The REPL (Read-Eval-Print Loop) is the interactive interface that allows users t
 
 # Helper Functions
 
-## 1. `compare` Function
-
-The `compare` function compares two arrays of digits, `a` and `b`, which represent large numbers. It determines whether `a` is greater than, less than, or equal to `b`.
-
----
-
-### How It Works:
-
-1. **Length Comparison**:
-
-   -  First, compare the lengths of `a` and `b`:
-      -  If the length of `a` is greater than `b`, then `a` is greater.
-      -  If the length of `a` is smaller than `b`, then `a` is smaller.
-
-2. **Digit-by-Digit Comparison**:
-
-   -  If the lengths are equal, compare the digits of `a` and `b` starting from the most significant (leftmost) digit.
-      -  If any digit in `a` is greater than the corresponding digit in `b`, then `a` is greater.
-      -  If any digit in `a` is smaller than the corresponding digit in `b`, then `a` is smaller.
-
-3. **Return**:
-   -  Return `1` if `a` is greater, `-1` if `a` is smaller, and `0` if they are equal.
-
----
-
-### Example Walkthrough:
-
-**Input**: `[1, 0, 2, 4]` and `[1, 2, 3, 4]`
-
-1. **Length Comparison**:
-
-   -  `a = [1, 0, 2, 4]`, `b = [1, 2, 3, 4]`
-   -  Both arrays have the same length (4), so proceed to the next step.
-
-2. **Digit-by-Digit Comparison**:
-
-   -  **Compare most significant digits**:
-      -  `a[0] = 1`, `b[0] = 1`. They are equal, so move to the next digit.
-   -  **Compare next significant digits**:
-      -  `a[1] = 0`, `b[1] = 2`. Since `0 < 2`, `a` is smaller than `b`.
-
-3. **Return**:
-   -  Since `a` is smaller than `b`, return `-1`.
-
-**Output**:
-
-```javascript
-compare([1, 0, 2, 4], [1, 2, 3, 4]) // Returns -1
-```
-
-[Back to Table of Contents](#table-of-contents)
-
-## 2. `makeFirstNumberNegative` Function
-
-The `makeFirstNumberNegative` iterates through an array of digits and changes the first positive number it encounters to a negative number. It ensures that the result reflects the intended negative sign in the most significant digit.
-
----
-
-### How It Works:
-
-1. **Initialization**:
-
-   -  The function takes an array `arr` and iterates through each element to find the first positive number.
-
-2. **Condition Check**:
-
-   -  If a positive number is found, it is converted to its negative counterpart by multiplying it by `-1`.
-   -  Once a positive number is made negative, the function immediately returns the modified array.
-
-3. **Return**:
-   -  If no positive number is found (i.e., all numbers are either zero or negative), the array is returned unmodified.
-
----
-
-### Example Walkthrough
-
-**Input**: `[2, 3, 4]`
-
-1. **Iteration**:
-
-   -  The function iterates through the array `[2, 3, 4]`.
-   -  At index 0, the number `2` is positive, so it gets converted to `-2`.
-
-2. **Return**:
-   -  After the first positive number is made negative, the function returns the modified array `[-2, 3, 4]`.
-
-**Output**:
-
-```javascript
-makeFirstNumberNegative([2, 3, 4]) // Returns [-2, 3, 4]
-```
-
-[Back to Table of Contents](#table-of-contents)
-
-## 3. `toDigits` Function
+## 1. `toDigits`
 
 The `toDigits` function converts a regular JavaScript number (`num`) into an array of digits. This is a helper function used to convert input numbers into the format used by the arbitrary-precision calculator (where numbers are represented as arrays of digits).
 
@@ -791,7 +706,7 @@ toDigits(12345) // Returns [1, 2, 3, 4, 5]
 
 [Back to Table of Contents](#table-of-contents)
 
-## 4. `fromDigits` Function
+## 2. `fromDigits`
 
 The `fromDigits` function converts an array of digits (`digits`) back into a regular JavaScript number. This is a helper function used to convert the output of the arbitrary-precision calculator (which is in the form of an array of digits) back into a standard number format.
 
@@ -846,6 +761,100 @@ fromDigits([1, 2, 3, 4, 5]) // Returns 12345
 
 ```javascript
 fromDigits([1, 2, 3, ".", 4, 5]) // Returns 123.45
+```
+
+[Back to Table of Contents](#table-of-contents)
+
+## 3. `compare`
+
+The `compare` function compares two arrays of digits, `a` and `b`, which represent large numbers. It determines whether `a` is greater than, less than, or equal to `b`.
+
+---
+
+### How It Works:
+
+1. **Length Comparison**:
+
+   -  First, compare the lengths of `a` and `b`:
+      -  If the length of `a` is greater than `b`, then `a` is greater.
+      -  If the length of `a` is smaller than `b`, then `a` is smaller.
+
+2. **Digit-by-Digit Comparison**:
+
+   -  If the lengths are equal, compare the digits of `a` and `b` starting from the most significant (leftmost) digit.
+      -  If any digit in `a` is greater than the corresponding digit in `b`, then `a` is greater.
+      -  If any digit in `a` is smaller than the corresponding digit in `b`, then `a` is smaller.
+
+3. **Return**:
+   -  Return `1` if `a` is greater, `-1` if `a` is smaller, and `0` if they are equal.
+
+---
+
+### Example Walkthrough:
+
+**Input**: `[1, 0, 2, 4]` and `[1, 2, 3, 4]`
+
+1. **Length Comparison**:
+
+   -  `a = [1, 0, 2, 4]`, `b = [1, 2, 3, 4]`
+   -  Both arrays have the same length (4), so proceed to the next step.
+
+2. **Digit-by-Digit Comparison**:
+
+   -  **Compare most significant digits**:
+      -  `a[0] = 1`, `b[0] = 1`. They are equal, so move to the next digit.
+   -  **Compare next significant digits**:
+      -  `a[1] = 0`, `b[1] = 2`. Since `0 < 2`, `a` is smaller than `b`.
+
+3. **Return**:
+   -  Since `a` is smaller than `b`, return `-1`.
+
+**Output**:
+
+```javascript
+compare([1, 0, 2, 4], [1, 2, 3, 4]) // Returns -1
+```
+
+[Back to Table of Contents](#table-of-contents)
+
+## 4. `makeFirstNumberNegative`
+
+The `makeFirstNumberNegative` iterates through an array of digits and changes the first positive number it encounters to a negative number. It ensures that the result reflects the intended negative sign in the most significant digit.
+
+---
+
+### How It Works:
+
+1. **Initialization**:
+
+   -  The function takes an array `arr` and iterates through each element to find the first positive number.
+
+2. **Condition Check**:
+
+   -  If a positive number is found, it is converted to its negative counterpart by multiplying it by `-1`.
+   -  Once a positive number is made negative, the function immediately returns the modified array.
+
+3. **Return**:
+   -  If no positive number is found (i.e., all numbers are either zero or negative), the array is returned unmodified.
+
+---
+
+### Example Walkthrough
+
+**Input**: `[2, 3, 4]`
+
+1. **Iteration**:
+
+   -  The function iterates through the array `[2, 3, 4]`.
+   -  At index 0, the number `2` is positive, so it gets converted to `-2`.
+
+2. **Return**:
+   -  After the first positive number is made negative, the function returns the modified array `[-2, 3, 4]`.
+
+**Output**:
+
+```javascript
+makeFirstNumberNegative([2, 3, 4]) // Returns [-2, 3, 4]
 ```
 
 [Back to Table of Contents](#table-of-contents)
