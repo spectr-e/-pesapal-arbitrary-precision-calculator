@@ -153,6 +153,21 @@ function modulo(a, b) {
 	return current
 }
 
+function exponentiation(a, b) {
+	let result = [1]
+	let base = a.slice()
+
+	while (b > 0) {
+		if (b % 2 === 1) {
+			result = multiply(result, base)
+		}
+		base = multiply(base, base)
+		b = Math.floor(b / 2)
+	}
+
+	return result
+}
+
 // Helper Functions
 function compare(a, b) {
 	if (a.every((digit) => digit === 0)) {
@@ -191,7 +206,7 @@ const digitA = parseInt(a).toString().split("").map(Number)
 const digitB = parseInt(b).toString().split("").map(Number)
 // solve the expression
 console.log({digitA, digitB})
-const result = modulo(digitA, digitB)
+const result = exponentiation(digitA, digitB)
 // convert the result back into a string and remove any leading zeros
 console.log({result})
 const answer = parseFloat(result.join(""), 10)
