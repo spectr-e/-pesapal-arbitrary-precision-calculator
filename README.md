@@ -1,12 +1,8 @@
 # The PesaPal Arbitrary Precision Integer Calculator Program
 
-This program allows you to perform arithmetic operations (addition, subtraction, multiplication, division, modulo, exponentiation, and factorial) on arbitrarily large numbers using arrays of digits. It features a REPL (Read-Eval-Print Loop) interface where you can interactively enter expressions and see results.
+This program allows you to perform arithmetic operations (addition, subtraction, multiplication, division, modulo and exponentiation) on arbitrarily large numbers using arrays of digits. It features a REPL (Read-Eval-Print Loop) interface where you can interactively enter expressions and see results.
 
-This solution has been implemented by [Josiah Nganga](https://linkedin.com/in/kamaujosia). Feel free to reach out to me if you have any questions via [my portfolio](https://josiah.vercel.app)
-
-This program allows you to perform arithmetic operations (addition, subtraction, multiplication, division, modulo, exponentiation, and factorial) on arbitrarily large numbers using arrays of digits. It features a REPL (Read-Eval-Print Loop) interface where you can interactively enter expressions and see results.
-
-This solution has been implemented by [Josiah Nganga](https://linkedin.com/in/kamaujosia). Feel free to reach out to me if you have any questions via [my portfolio](https://josiah.vercel.app)
+This solution has been implemented by [Josiah Nganga](https://josiah.vercel.app). Feel free to reach out to me if you have any questions via [Josiah Nganga on LinkedIn](https://linkedin.com/in/kamaujosia).
 
 # Table of Contents
 
