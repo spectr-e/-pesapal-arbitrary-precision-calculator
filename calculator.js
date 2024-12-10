@@ -196,6 +196,14 @@ function makeFirstNumberNegative(arr) {
 	return arr // Return unmodified array if no number found
 }
 
+function toDigits(num) {
+	return num.toString().split("").map(Number)
+}
+
+function fromDigits(digits) {
+	return parseFloat(digits.join(""), 10)
+}
+
 // take an expression as input
 const input = prompt("Enter two numbers seperated by a space (or 'exit'):")
 // place the two inputs into seperate variables
