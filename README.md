@@ -858,3 +858,35 @@ makeFirstNumberNegative([2, 3, 4]) // Returns [-2, 3, 4]
 ```
 
 [Back to Table of Contents](#table-of-contents)
+
+# Edge Cases and Error Handling
+
+The PesaPal Arbitrary Precision Integer Calculator program is designed to handle a variety of edge cases and potential errors to ensure robust and reliable operation. Here are some of the key scenarios considered:
+
+**1. Division by Zero:**
+
+-  In the `divide` and `modulo` functions, explicit checks are performed to prevent division by zero. If the divisor (`b`) is zero (all digits are 0), an error is thrown with the message "Division by zero" or "Modulo by zero" respectively.
+
+**2. Invalid Input:**
+
+-  The REPL (Read-Eval-Print Loop) uses a `try...catch` block to handle potential errors during input parsing and evaluation. If the user enters an invalid expression (e.g., incorrect syntax, unsupported operators), an error message is displayed to the user.
+
+**3. Large Numbers:**
+
+-  The program is designed to handle arbitrarily large numbers that exceed the limits of standard JavaScript number types. Numbers are represented as arrays of digits, allowing for calculations with very large integers.
+
+**4. Negative Numbers:**
+
+-  The `subtract` function handles cases where the result of subtraction is negative. It correctly adjusts the sign of the result and ensures proper borrowing during the calculation.
+
+**5. Empty Input:**
+
+-  The REPL handles cases where the user enters empty input or only whitespace. It prompts the user again for a valid expression.
+
+**6. Leading Zeros:**
+
+-  Functions like `add`, `subtract`, and `multiply` handle potential leading zeros in the result to ensure the output is in a normalized format.
+
+**7. Decimal Precision:**
+
+-  The `divide` function allows for specifying the desired precision for decimal places in the result. This helps control the length of the decimal part in the quotient.
