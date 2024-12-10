@@ -1,5 +1,6 @@
 const prompt = require("prompt-sync")({sigint: true})
 
+// Core Functions
 function add(a, b) {
 	let result = []
 	let carry = 0
@@ -15,33 +16,6 @@ function add(a, b) {
 	}
 
 	return result.reverse()
-}
-
-function compare(a, b) {
-	if (a.every((digit) => digit === 0)) {
-		return -1
-	}
-
-	if (a.length !== b.length) {
-		return a.length > b.length ? 1 : -1
-	}
-
-	for (let i = 0; i < a.length; i++) {
-		if (a[i] !== b[i]) {
-			return a[i] > b[i] ? 1 : -1
-		}
-	}
-	return 0
-}
-
-function makeFirstNumberNegative(arr) {
-	for (let i = 0; i < arr.length; i++) {
-		if (typeof arr[i] === "number") {
-			arr[i] = arr[i] > 0 ? -arr[i] : arr[i] // Make negative if positive
-			return arr // Return the modified array
-		}
-	}
-	return arr // Return unmodified array if no number found
 }
 
 function subtract(a, b) {
@@ -177,6 +151,34 @@ function modulo(a, b) {
 	}
 
 	return current
+}
+
+// Helper Functions
+function compare(a, b) {
+	if (a.every((digit) => digit === 0)) {
+		return -1
+	}
+
+	if (a.length !== b.length) {
+		return a.length > b.length ? 1 : -1
+	}
+
+	for (let i = 0; i < a.length; i++) {
+		if (a[i] !== b[i]) {
+			return a[i] > b[i] ? 1 : -1
+		}
+	}
+	return 0
+}
+
+function makeFirstNumberNegative(arr) {
+	for (let i = 0; i < arr.length; i++) {
+		if (typeof arr[i] === "number") {
+			arr[i] = arr[i] > 0 ? -arr[i] : arr[i] // Make negative if positive
+			return arr // Return the modified array
+		}
+	}
+	return arr // Return unmodified array if no number found
 }
 
 // take an expression as input
