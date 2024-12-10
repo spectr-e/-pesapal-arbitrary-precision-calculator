@@ -26,13 +26,16 @@ This solution has been implemented by [Josiah Nganga](https://linkedin.com/in/ka
    -  [5. `modulo` function](#5-modulo-function)
       -  [How It works](#how-it-works-4)
       -  [Example Walkthrough](#example-walkthrough-4)
--  [Helper Functions](#helper-functions)
-   -  [1. `compare` function](#1-compare-function)
+   -  [6. `exponentiation` function](#6-exponentiation-function)
       -  [How It works](#how-it-works-5)
       -  [Example Walkthrough](#example-walkthrough-5)
-   -  [2. `makeFirstNumberNegative` function](#2-makefirstnumbernegative-function)
+-  [Helper Functions](#helper-functions)
+   -  [1. `compare` function](#1-compare-function)
       -  [How It works](#how-it-works-6)
       -  [Example Walkthrough](#example-walkthrough-6)
+   -  [2. `makeFirstNumberNegative` function](#2-makefirstnumbernegative-function)
+      -  [How It works](#how-it-works-7)
+      -  [Example Walkthrough](#example-walkthrough-7)
 
 # Getting Started
 
@@ -499,6 +502,67 @@ The `modulo` function calculates the remainder when one array of digits, `a` (di
 
 ```javascript
 modulo([1, 0, 2, 4], [4]) // Returns [0]
+```
+
+[Back to Table of Contents](#table-of-contents)
+
+## 6. `exponentiation` Function
+
+The `exponentiation` function calculates the result of raising one array of digits, `a` (base), to the power of a non-negative integer `b` (exponent). Each digit in the array `a` represents a single digit of the base number. The function uses the "exponentiation by squaring" algorithm for efficient calculation.
+
+### How It Works:
+
+1. **Initialization**:
+
+   -  `result`: Initialized to `[1]`, as any number raised to the power 0 is 1.
+   -  `base`: A copy of the input array `a`.
+
+2. **Exponentiation by Squaring Loop**:
+
+   -  Iterate while the exponent `b` is greater than 0:
+      -  If `b` is odd, multiply `result` by the current `base` and store the result back in `result`.
+      -  Square the `base` (multiply it by itself) and store the result back in `base`.
+      -  Divide `b` by 2 (integer division, discarding any remainder).
+
+3. **Return**:
+   -  After the loop completes, `result` holds the final result of the exponentiation. The `result` array is returned.
+
+### Example Walkthrough
+
+**Input**: `[2, 3]` raised to the power 4
+
+1. **Initialization**:
+
+   -  `a = [2, 3]`, `b = 4`
+   -  `result = [1]`, `base = [2, 3]`
+
+2. **Step-by-Step Exponentiation**:
+
+   -  **Iteration 1**:
+
+      -  `b (4)` is even.
+      -  Square `base`: `base = [2, 3] * [2, 3] = [5, 2, 9]`
+      -  Divide `b` by 2: `b = 2`
+
+   -  **Iteration 2**:
+
+      -  `b (2)` is even.
+      -  Square `base`: `base = [5, 2, 9] * [5, 2, 9] = [2, 7, 8, 8, 8, 1]`
+      -  Divide `b` by 2: `b = 1`
+
+   -  **Iteration 3**:
+      -  `b (1)` is odd.
+      -  Multiply `result` by `base`: `result = [1] * [2, 7, 8, 8, 8, 1] = [2, 7, 8, 8, 8, 1]`
+      -  Square `base`: `base = [2, 7, 8, 8, 8, 1] * [2, 7, 8, 8, 8, 1] = ...` (a very large number)
+      -  Divide `b` by 2: `b = 0`
+
+3. **Return**:
+   -  The final `result = [2, 7, 8, 8, 8, 1]`.
+
+**Output**:
+
+```javascript
+exponentiation([2, 3], 4) // Returns [2, 7, 8, 8, 8, 1] which represents 23^4 = 279841
 ```
 
 [Back to Table of Contents](#table-of-contents)
