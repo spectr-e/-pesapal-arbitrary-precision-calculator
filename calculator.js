@@ -204,18 +204,45 @@ function fromDigits(digits) {
 	return parseFloat(digits.join(""), 10)
 }
 
-// take an expression as input
-const input = prompt("Enter two numbers seperated by a space (or 'exit'):")
-// place the two inputs into seperate variables
-const [a, b] = input.split(" ")
-// convert the inputs into arrays of digits
-// This parseInt() approach is necessary because it will remove any leading zeros from the input, which might affect the correctness of the arithmetic operations.
-const digitA = parseInt(a).toString().split("").map(Number)
-const digitB = parseInt(b).toString().split("").map(Number)
-// solve the expression
-console.log({digitA, digitB})
-const result = exponentiation(digitA, digitB)
-// convert the result back into a string and remove any leading zeros
-console.log({result})
-const answer = parseFloat(result.join(""), 10)
-console.log({answer})
+// REPL
+while (true) {
+	const input = prompt("Enter an expression (or 'exit'):")
+	if (input === "exit") break
+
+	try {
+		const [a, op, b] = input.split(" ")
+		const digitsA = toDigits(parseInt(a))
+		const digitsB = toDigits(parseInt(b))
+		let result
+
+		switch (op) {
+			case "+":
+				result = add(digitsA, digitsB)
+				break
+			case "-":
+				result = subtract(digitsA, digitsB)
+				break
+			case "*":
+				result = multiply(digitsA, digitsB)
+				break
+			case "/":
+				result = divide(digitsA, digitsB)
+				break
+			case "%":
+				result = modulo(digitsA, digitsB)
+				break
+			case "^":
+				result = exponentiation(digitsA, parseInt(b))
+				break
+			case "!":
+				result = factorial(parseInt(a))
+				break
+			default:
+				throw new Error("Invalid operator")
+		}
+
+		console.log(fromDigits(result))
+	} catch (error) {
+		console.error(error.message)
+	}
+}
