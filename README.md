@@ -436,6 +436,70 @@ The `divide` function performs division of two arrays of digits, `a` (dividend) 
 divide([1], [3], 4) // Returns [0, '.', 3, 3, 3, 3] which represents 0.3333
 ```
 
+## 5. `modulo` Function
+
+The `modulo` function calculates the remainder when one array of digits, `a` (dividend), is divided by another array of digits, `b` (divisor). Each array represents a large number, where each element is a single digit. The function uses a repeated subtraction approach to find the modulo. Modulo by zero is explicitly handled by throwing an error.
+
+### How It Works:
+
+1. **Handle Modulo by Zero**:
+
+   -  If all digits in `b` are zero, throw an error: `"Modulo by zero"`.
+
+2. **Initialization**:
+
+   -  `current`: An empty array used to build the portion of the dividend currently being processed.
+
+3. **Repeated Subtraction Loop**:
+
+   -  Iterate through each digit of `a` from left to right.
+   -  Add the current digit of `a` to `current`.
+   -  Repeatedly subtract `b` from `current` while `current >= b`. This effectively simulates the division process to find the remainder.
+
+4. **Return**:
+   -  After processing all digits, `current` contains the remainder, which is the modulo result. The `current` array is returned.
+
+### Example Walkthrough
+
+**Input**: `[1, 0, 2, 4]` modulo `[4]`
+
+1. **Initialization**:
+
+   -  `a = [1, 0, 2, 4]`, `b = [4]`
+   -  `current = []`
+
+2. **Step-by-Step Modulo Calculation**:
+
+   -  **Iteration 1 (Process digit 1)**:
+
+      -  Add `1` to `current`: `current = [1]`.
+      -  `1 < 4`, so no subtraction is performed.
+
+   -  **Iteration 2 (Process digit 0)**:
+
+      -  Add `0` to `current`: `current = [1, 0]`.
+      -  `10 >= 4`. Subtract `4` twice: `current = [2]`.
+
+   -  **Iteration 3 (Process digit 2)**:
+
+      -  Add `2` to `current`: `current = [2, 2]`.
+      -  `22 >= 4`. Subtract `4` five times: `current = [2]`.
+
+   -  **Iteration 4 (Process digit 4)**:
+      -  Add `4` to `current`: `current = [2, 4]`.
+      -  `24 >= 4`. Subtract `4` six times: `current = [0]`.
+
+3. **Return**:
+   -  The final `current = [0]`, which is the remainder.
+
+**Output**:
+
+```javascript
+modulo([1, 0, 2, 4], [4]) // Returns [0]
+```
+
+[Back to Table of Contents](#table-of-contents)
+
 # Helper Functions
 
 ## 1. `compare` Function
